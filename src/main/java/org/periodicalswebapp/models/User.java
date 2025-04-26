@@ -77,4 +77,9 @@ public class User {
     public void setIndex(String index) {
         this.index = index;
     }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", address=" + address + ", index=" + index + ", email=" + email + ", password=" + password + "]";
+    }
 }

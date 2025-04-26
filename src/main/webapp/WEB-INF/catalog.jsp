@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Catalog</title>
+    <title>Каталог</title>
 </head>
 <body>
-<h2>Catalog</h2>
+<h2>Каталог</h2>
+<a href="/profile">Профіль</a>
+<a href="/cart">Корзина</a>
 </body>
 </html>

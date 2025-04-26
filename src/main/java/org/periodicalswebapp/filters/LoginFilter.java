@@ -24,11 +24,14 @@ public class LoginFilter implements Filter{
         String URI = String.valueOf(req.getServletPath());
         boolean isLoggedIn = req.getSession().getAttribute("user") != null;
 
-        if(isLoggedIn || URI.equals("/login") || URI.equals("/register")) {
+        if(isLoggedIn && (URI.equals("/login") || URI.equals("/register"))) {
+            res.sendRedirect(req.getContextPath() + "/catalog");
+        }
+        else if(isLoggedIn || URI.equals("/login") || URI.equals("/register") || URI.equals("/")) {
             chain.doFilter(request, response);
         }
         else {
-            res.sendRedirect("/login");
+            res.sendRedirect(req.getContextPath() + "/login");
         }
 
 

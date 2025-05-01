@@ -20,7 +20,7 @@
         <c:if test="${loggedIn}">
             <a href="/profile" class="btn btn-primary btn-lg">Профіль</a>
             <a href="/catalog" class="btn btn-primary btn-lg">Каталог</a>
-            <a href="/cart" class="btn btn-primary btn-lg">Корзина</a>
+            <a href="/cart" class="btn btn-primary btn-lg">Кошик</a>
         </c:if>
     </div>
 </div>

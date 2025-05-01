@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
                 user.setAddress(rs.getString("address"));
                 user.setIndex(rs.getString("index"));
                 user.setPassword(rs.getString("password"));
-                user.setRole(rs.getInt("role"));
+                user.setRole(rs.getString("role"));
                 return user;
             }
         } catch (SQLException e) {

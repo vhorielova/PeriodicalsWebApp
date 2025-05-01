@@ -21,6 +21,7 @@ public class UserDaoImplTest {
         assertEquals("12345", user.getIndex());
         assertEquals("ivan@example.com", user.getEmail());
         assertEquals("pass123", user.getPassword());
+        assertEquals(1, user.getRole());
     }
 
     @Test

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class CatalogHandler implements Handler {
     public void handleGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/catalog");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/catalog.jsp");
         dispatcher.forward(request, response);
     }
 

@@ -10,8 +10,8 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
 
     public PeriodicalDaoImpl() {
         periodicals = new ArrayList<Periodical> ();
-        periodicals.add(new Periodical(1, "NY Times"));
-        periodicals.add(new Periodical(2, "The New Yorker"));
+        periodicals.add(new Periodical(1, "NY Times", 30, 50));
+        periodicals.add(new Periodical(2, "The New Yorker", 20, 35));
     }
 
     @Override

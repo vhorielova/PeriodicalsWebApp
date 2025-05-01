@@ -16,14 +16,12 @@ public class LoginHandler implements Handler{
     private final UserDaoImpl userDao = UserDaoImpl.getInstance();
 
     public void handleGet (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(request.getRequestURI()+" Get");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
         dispatcher.forward(request, response);
 
     }
     public void handlePost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        System.out.println(request.getRequestURI()+" Post");
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");

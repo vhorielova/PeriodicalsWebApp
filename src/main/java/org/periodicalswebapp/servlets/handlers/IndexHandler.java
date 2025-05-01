@@ -11,7 +11,6 @@ import java.io.PrintWriter;
 
 public class IndexHandler implements Handler{
     public void handleGet (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(request.getRequestURI()+" Get");
 
         HttpSession session = request.getSession();
 //        System.out.println(session.getAttribute("user"));

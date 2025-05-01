@@ -16,8 +16,6 @@ public class LoginFilter implements Filter{
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        System.out.println("Preprocessing for filter");
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
 
@@ -34,8 +32,6 @@ public class LoginFilter implements Filter{
             res.sendRedirect(req.getContextPath() + "/login");
         }
 
-
-        System.out.println("PostProcessing for filter");
     }
 
     @Override

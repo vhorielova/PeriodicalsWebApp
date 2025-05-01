@@ -15,7 +15,6 @@ public class RegisterHandler implements Handler{
     private final UserDaoImpl userDao = UserDaoImpl.getInstance();
 
     public void handleGet (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(request.getRequestURI()+" Get");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/register.jsp");
         dispatcher.forward(request, response);
@@ -23,7 +22,6 @@ public class RegisterHandler implements Handler{
     }
 
     public void handlePost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(request.getRequestURI()+" Post");
 
         String name = request.getParameter("name");
         String lastname = request.getParameter("lastname");

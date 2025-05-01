@@ -1,13 +1,14 @@
 package org.periodicalswebapp.models;
 
 public class User {
-    private int id;
+    private Integer id;
     private String name;
     private String lastname;
     private String address;
     private String index;
     private String email;
     private String password;
+    private int role;
 
     public User(){
     }
@@ -20,6 +21,7 @@ public class User {
         this.index = index;
         this.email = email;
         this.password = password;
+        //this.role = role;
     }
 
     public int getId() {
@@ -81,5 +83,13 @@ public class User {
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", address=" + address + ", index=" + index + ", email=" + email + ", password=" + password + "]";
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 }

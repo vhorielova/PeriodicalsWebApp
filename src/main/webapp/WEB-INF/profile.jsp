@@ -34,10 +34,10 @@
         <div class="card-body">
             <p class="card-text"><strong>Емейл:</strong> ${user.email}</p>
             <form action="/profile" method="post">
-                <label>Ім'я: </label> <input type="text" id="name" name="name" value="${user.name}">
-                <label>Прізвище: </label> <input type="text" id="lastname" name="lastname" value="${user.lastname}">
-                <label>Адреса: </label> <input type="text" id="address" name="address" value="${user.address}">
-                <label>Індекс: </label> <input type="text" id="index" name="index" value="${user.index}">
+                <label>Ім'я: </label> <input type="text" id="name" name="name" value="${user.name}"> <br>
+                <label>Прізвище: </label> <input type="text" id="lastname" name="lastname" value="${user.lastname}"> <br>
+                <label>Адреса: </label> <input type="text" id="address" name="address" value="${user.address}"> <br>
+                <label>Індекс: </label> <input type="text" id="index" name="index" value="${user.index}"> <br>
                 <c:if test="${not empty error}">
                     <div class="alert alert-danger" role="alert">
                             ${error}

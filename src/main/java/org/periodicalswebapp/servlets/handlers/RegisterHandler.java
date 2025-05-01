@@ -41,7 +41,11 @@ public class RegisterHandler implements Handler{
         request.setAttribute("password", password);
         request.setAttribute("confirmPassword", confirmPassword);
 
-        if(name.isEmpty() || lastname.isEmpty() || email.isEmpty() || address.isEmpty() || index.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if(userDao.getUserByEmail(email) != null) {
+            request.setAttribute("error", "Користувач з даним емейлом вже зареєстрований");
+            handleGet(request, response);
+        }
+        else if(name.isEmpty() || lastname.isEmpty() || email.isEmpty() || address.isEmpty() || index.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             request.setAttribute("error", "Будь ласка, заповніть всі поля");
             handleGet(request, response);
         }
@@ -50,9 +54,11 @@ public class RegisterHandler implements Handler{
             handleGet(request, response);
         }
         else {
-            User user = new User(name, lastname, address, index, email, password);
-            System.out.println(user.toString());
-            userDao.saveUser(user);
+            User newUser = new User(name, lastname, address, index, email, password);
+            System.out.println(newUser.toString());
+            userDao.saveUser(newUser);
+
+            User user = userDao.getUserByEmail(email);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/catalog.jsp");

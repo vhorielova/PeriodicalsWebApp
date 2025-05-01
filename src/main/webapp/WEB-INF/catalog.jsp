@@ -34,11 +34,14 @@
     <div class="col">
         <div class="col-md-12">
             <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">Товар 1</h5>
-                    <p class="card-text">Опис товару 1.</p>
-                    <a href="#" class="btn btn-primary">Додати до кошика</a>
-                </div>
+                <c:forEach var="item" items="${periodicals}">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.name}</h5>
+                        <p class="card-text">Ціна на шість місяців: ${item.halfYearPrice}</p>
+                        <p class="card-text">Ціна на 12 місяців: ${item.fullYearPrice}</p>
+                        <a href="#" class="btn btn-primary">Додати до кошика</a>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>

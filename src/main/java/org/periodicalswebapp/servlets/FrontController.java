@@ -17,9 +17,10 @@ public class FrontController extends HttpServlet {
         routes.put("/", new IndexHandler());
         routes.put("/login", new LoginHandler());
         routes.put("/register", new RegisterHandler());
-        routes.put("/catalog", new HelloHandler());
-        routes.put("/profile", new HelloHandler());
-        routes.put("/cart", new HelloHandler());
+        routes.put("/catalog", new CatalogHandler());
+        routes.put("/profile", new ProfileHandler());
+        routes.put("/cart", new CartHandler());
+        routes.put("/logout", new LogoutHandler());
         message = "FrontController";
     }
 

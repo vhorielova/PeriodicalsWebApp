@@ -32,12 +32,16 @@ public class UserDaoImpl implements UserDao {
 
             ResultSet rs = stmt.getResultSet();
             if(rs.next()) {
-                return new User(rs.getString("name"),
-                        rs.getString("lastname"),
-                        rs.getString("address"),
-                        rs.getString("index"),
-                        rs.getString("email"),
-                        rs.getString("password"));
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setEmail(rs.getString("email"));
+                user.setName(rs.getString("name"));
+                user.setLastname(rs.getString("lastname"));
+                user.setAddress(rs.getString("address"));
+                user.setIndex(rs.getString("index"));
+                user.setPassword(rs.getString("password"));
+                user.setRole(rs.getInt("role"));
+                return user;
             }
         } catch (SQLException e) {
             throw new RuntimeException("Помилка при пошуку користувача", e);
@@ -46,7 +50,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User updateUser(User user) {
-        String sql = "update users set name = ?, lastname = ?, address = ?, index = ?, email = ?, password = ? where id = ?";
+        String sql = "update users set name = ?, lastname = ?, address = ?, index = ?, password = ? where email = ?";
         PreparedStatement stmt = null;
         Connection conn = null;
         try {
@@ -57,13 +61,12 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(2, user.getLastname());
             stmt.setString(3, user.getAddress());
             stmt.setString(4, user.getIndex());
-            stmt.setString(5, user.getEmail());
-            stmt.setString(6, user.getPassword());
-            stmt.setInt(7, user.getId());
+            stmt.setString(5, user.getPassword());
+            stmt.setString(6, user.getEmail());
             stmt.executeUpdate();
             conn.commit();
         } catch (SQLException e) {
-            throw new RuntimeException("Помилка при додаванні користувача", e);
+            throw new RuntimeException("Помилка при оновлені користувача", e);
         }
         return null;
     }
@@ -105,5 +108,27 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException("Помилка при видаленні користувача", e);
         }
+    }
+
+    @Override
+    public boolean isUserAdmin(User user) {
+        String sql = "select * from admin where email = ?";
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        try {
+            conn = ConnectionManager.getDataSource().getConnection();
+            conn.setAutoCommit(false);
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, user.getEmail());
+            stmt.executeQuery();
+            conn.commit();
+            ResultSet rs = stmt.getResultSet();
+            if(rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Помилка при видаленні користувача", e);
+        }
+        return false;
     }
 }

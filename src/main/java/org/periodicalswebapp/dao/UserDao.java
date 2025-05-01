@@ -9,4 +9,5 @@ public interface UserDao {
     User getUserByEmail(String email);
     void saveUser(User periodical);
     void deleteUser(User periodical);
+    boolean isUserAdmin(User user);
 }

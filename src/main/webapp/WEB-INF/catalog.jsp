@@ -39,7 +39,24 @@
                         <h5 class="card-title">${item.name}</h5>
                         <p class="card-text">Ціна на шість місяців: ${item.halfYearPrice}</p>
                         <p class="card-text">Ціна на 12 місяців: ${item.fullYearPrice}</p>
-                        <a href="#" class="btn btn-primary">Додати до кошика</a>
+                        <c:set var="alreadyInCart" value="false" />
+                        <c:forEach var="cartItem" items="${periodicalsCart}">
+                            <c:if test="${cartItem.id == item.id}">
+                                <c:set var="alreadyInCart" value="true" />
+                            </c:if>
+                        </c:forEach>
+
+                        <c:choose>
+                            <c:when test="${alreadyInCart}">
+                                <button class="btn btn-secondary" disabled>У кошику</button>
+                            </c:when>
+                            <c:otherwise>
+                                <form method="post" action="/catalog">
+                                    <input type="hidden" name="periodicalId" value="${item.id}" />
+                                    <button type="submit" class="btn btn-primary">Додати до кошика</button>
+                                </form>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </c:forEach>
             </div>

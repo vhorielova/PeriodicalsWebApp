@@ -29,6 +29,29 @@
         </ul>
     </div>
 </nav>
-
+<div class="container mt-5">
+    <h2 class="text-center">Кошик</h2>
+    <div class="col">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <c:forEach var="item" items="${periodicalsCart}">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.name}</h5>
+                        <p class="card-text">Ціна на шість місяців: ${item.halfYearPrice}</p>
+                        <p class="card-text">Ціна на 12 місяців: ${item.fullYearPrice}</p>
+                        <form method="post" action="/cart">
+                            <input type="hidden" name="periodicalId" value="${item.id}" />
+                            <input type="hidden" name="delete" value="true" />
+                            <button type="submit" class="btn btn-primary">Видалити з кошика</button>
+                        </form>
+                        <form method="post" action="/cart">
+                            <button type="submit" class="btn btn-primary">Замовити</button>
+                        </form>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

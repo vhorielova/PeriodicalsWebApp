@@ -26,6 +26,5 @@ public class IndexHandler implements Handler{
     }
 
     public void handlePost (HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println(request.getRequestURI()+" Post");
     }
 }

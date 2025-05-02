@@ -16,7 +16,6 @@ public class CatalogHandler implements Handler {
     public void handleGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PeriodicalDaoImpl periodicalDao = new PeriodicalDaoImpl();
         List<Periodical> periodicals = periodicalDao.getAllPeriodicals();
-        System.out.println(periodicals);
         request.setAttribute("periodicals", periodicals);
 
         HttpSession session = request.getSession();

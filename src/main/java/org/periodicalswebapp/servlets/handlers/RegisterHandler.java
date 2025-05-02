@@ -53,7 +53,6 @@ public class RegisterHandler implements Handler{
         }
         else {
             User newUser = new User(name, lastname, address, index, email, password);
-            System.out.println(newUser.toString());
             userDao.saveUser(newUser);
 
             User user = userDao.getUserByEmail(email);

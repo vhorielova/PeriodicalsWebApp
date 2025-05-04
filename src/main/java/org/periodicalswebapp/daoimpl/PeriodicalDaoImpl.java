@@ -83,11 +83,37 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
 
     @Override
     public void savePeriodical(Periodical periodical) {
-
+        String sql = "insert into periodicals (name, halfyearprice, fullyearprice) values (?,?,?)";
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        try {
+            conn = ConnectionManager.getDataSource().getConnection();
+            conn.setAutoCommit(false);
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, periodical.getName());
+            stmt.setDouble(2, periodical.getHalfYearPrice());
+            stmt.setDouble(3, periodical.getFullYearPrice());
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException("Помилка при додаванні періодичного видання", e);
+        }
     }
 
     @Override
-    public void deletePeriodical(Periodical periodical) {
-
+    public void deletePeriodical(int periodicalId) {
+        String sql = "delete from periodicals where id = ?";
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        try {
+            conn = ConnectionManager.getDataSource().getConnection();
+            conn.setAutoCommit(false);
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, periodicalId);
+            stmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException("Помилка при видаленні періодичного видання", e);
+        }
     }
 }

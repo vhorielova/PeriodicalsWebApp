@@ -34,6 +34,7 @@ public class LoginHandler implements Handler{
         if(user != null && user.getPassword().equals(password)) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
+            session.setMaxInactiveInterval(-1);
             response.sendRedirect("/");
         }
         else {

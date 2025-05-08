@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -34,21 +35,42 @@
     <div class="col">
         <div class="col-md-12">
             <div class="card mb-4">
-                <c:forEach var="item" items="${periodicalsCart}">
-                    <div class="card-body">
-                        <h5 class="card-title">${item.name}</h5>
-                        <p class="card-text">Ціна на шість місяців: ${item.halfYearPrice}</p>
-                        <p class="card-text">Ціна на 12 місяців: ${item.fullYearPrice}</p>
-                        <form method="post" action="/cart">
-                            <input type="hidden" name="periodicalId" value="${item.id}" />
-                            <input type="hidden" name="delete" value="true" />
-                            <button type="submit" class="btn btn-primary">Видалити з кошика</button>
-                        </form>
-                        <form method="post" action="/cart">
-                            <button type="submit" class="btn btn-primary">Замовити</button>
-                        </form>
-                    </div>
-                </c:forEach>
+                <c:choose>
+                    <c:when test="${empty periodicalsCart}">
+                        Кошик пустий
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="item" items="${periodicalsCart}">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.key.name}</h5>
+                                <c:choose>
+                                    <c:when test="${item.value == 6}">
+                                        <p class="card-text">Ціна на 6 місяців: ${item.key.halfYearPrice}</p>
+                                        <c:set var="totalPrice" value="${totalPrice + item.key.halfYearPrice}" />
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p class="card-text">Ціна на 12 місяців: ${item.key.fullYearPrice}</p>
+                                        <c:set var="totalPrice" value="${totalPrice + item.key.fullYearPrice}" />
+                                    </c:otherwise>
+                                </c:choose>
+                                <form method="post" action="/cart">
+                                    <input type="hidden" name="periodicalId" value="${item.key.id}" />
+                                    <input type="hidden" name="delete" value="true" />
+                                    <button type="submit" class="btn btn-primary">Видалити з кошика</button>
+                                </form>
+                            </div>
+                        </c:forEach>
+                        <div class="card-footer text-right">
+                            <strong>Загальна сума: ${totalPrice}</strong>
+                        </div>
+                        <div class="card-body">
+                            <form method="post" action="/cart">
+                                <input type="hidden" name="order" value="true" />
+                                <button type="submit" class="btn btn-primary">Замовити</button>
+                            </form>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>

@@ -5,12 +5,10 @@ import jakarta.servlet.http.*;
 import org.periodicalswebapp.servlets.handlers.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 public class FrontController extends HttpServlet {
-    private String message;
     Map<String, Handler> routes = new HashMap<>();
 
     public void init() {
@@ -21,7 +19,6 @@ public class FrontController extends HttpServlet {
         routes.put("/profile", new ProfileHandler());
         routes.put("/cart", new CartHandler());
         routes.put("/logout", new LogoutHandler());
-        message = "FrontController";
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +38,6 @@ public class FrontController extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String URI = String.valueOf(request.getServletPath());
-        //System.out.println(URL);
         Handler handler = routes.get(URI);
 
         if(handler != null) {
@@ -50,15 +46,6 @@ public class FrontController extends HttpServlet {
         else {
             throw new ServletException("No handler found for " + URI);
         }
-
-
-        response.setContentType("text/html");
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
     }
 
     public void destroy() {

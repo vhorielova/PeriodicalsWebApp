@@ -1,17 +1,23 @@
 package org.periodicalswebapp.models;
 
+import java.util.Date;
+
 public class Subscription {
     private int id;
-    private int user_id;
-    private int periodical_id;
+    private int userId;
+    private int periodicalId;
+    private int period;
+    private Date createdAt;
+    private boolean expired;
 
     public Subscription() {
     }
 
-    public Subscription(int id, int user_id, int periodical_id) {
+    public Subscription(int id, int userId, int periodicalId, int period) {
         this.id = id;
-        this.user_id = user_id;
-        this.periodical_id = periodical_id;
+        this.userId = userId;
+        this.periodicalId = periodicalId;
+        this.period = period;
     }
 
     public int getId() {
@@ -22,19 +28,43 @@ public class Subscription {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int user_id) {
+        this.userId = user_id;
     }
 
-    public int getPeriodical_id() {
-        return periodical_id;
+    public int getPeriodicalId() {
+        return periodicalId;
     }
 
-    public void setPeriodical_id(int periodical_id) {
-        this.periodical_id = periodical_id;
+    public void setPeriodicalId(int periodicalId) {
+        this.periodicalId = periodicalId;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(int period) {
+        this.period = period;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public boolean isExpired() {
+        return expired;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
     }
 }

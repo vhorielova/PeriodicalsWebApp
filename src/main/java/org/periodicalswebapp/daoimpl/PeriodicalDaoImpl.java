@@ -18,10 +18,6 @@ public class PeriodicalDaoImpl implements PeriodicalDao {
     public PeriodicalDaoImpl() {
     }
 
-    public static PeriodicalDaoImpl getInstance() {
-        return periodicalDaoImpl;
-    }
-
     @Override
     public List<Periodical> getAllPeriodicals() {
         String sql = "select * from periodicals";

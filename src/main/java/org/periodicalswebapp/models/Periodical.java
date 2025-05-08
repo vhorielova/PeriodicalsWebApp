@@ -10,9 +10,9 @@ public class Periodical {
     public Periodical(){
     }
 
-    public Periodical(String name, String type, double halfYearPrice, double fullYearPrice) {
+    public Periodical(String name, double halfYearPrice, double fullYearPrice) {
         this.name = name;
-        this.type = type;
+        //this.type = type;
         this.halfYearPrice = halfYearPrice;
         this.fullYearPrice = fullYearPrice;
     }

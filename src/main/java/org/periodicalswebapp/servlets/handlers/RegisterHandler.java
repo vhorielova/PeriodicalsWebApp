@@ -57,6 +57,7 @@ public class RegisterHandler implements Handler{
 
             User user = userDao.getUserByEmail(email);
             HttpSession session = request.getSession();
+            session.setMaxInactiveInterval(-1);
             session.setAttribute("user", user);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/catalog.jsp");
             dispatcher.forward(request, response);

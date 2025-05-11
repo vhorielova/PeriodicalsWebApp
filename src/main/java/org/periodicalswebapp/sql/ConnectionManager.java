@@ -21,7 +21,6 @@ public class ConnectionManager {
 
 
     public static DataSource getDataSource() {
-        System.out.println(dataSource);
         return dataSource;
     }
 }
